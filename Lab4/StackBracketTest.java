@@ -93,7 +93,7 @@ public class StackBracketTest {
         if (!theStack.isEmpty()) {
             System.out.println("Error: missing right delimiter");
         }
-        
+
     }
 
     /**
@@ -106,8 +106,8 @@ public class StackBracketTest {
      */
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(System.in);
+        // Declare a variable of type StackBracketTest and create
         String input = null;
-        // Declare a variable of type StackBracketTest and create 
 
         // and assign to it and instance of StackBracketTest class. 
         // Which would be the most appropriate constructor to use here?
@@ -120,14 +120,14 @@ public class StackBracketTest {
             StackBracketTest test = new StackBracketTest(input);
             // can you determine what this if statement is doing?  
             if (!input.equals("")) {
-
+                throw new IOException();
             }
             // pass the string to the StackBracketTest object created
             // above using the most appropriate method.
-            test.check();
             // Call the StackBracketTest check method.
             // Test result of check method and display result in form of
             // a message to the user e.g. “This statement is valid” 
+            test.check();
         } while (!input.equals(""));
     }
 }
