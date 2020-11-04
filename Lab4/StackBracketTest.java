@@ -108,6 +108,7 @@ public class StackBracketTest {
         Scanner scan = new Scanner(System.in);
         // Declare a variable of type StackBracketTest and create
         String input = null;
+         StackBracketTest test = new StackBracketTest();
 
         // and assign to it and instance of StackBracketTest class. 
         // Which would be the most appropriate constructor to use here?
@@ -117,17 +118,17 @@ public class StackBracketTest {
         do {
             System.out.print("Enter string containing delimiters: ");
             input = scan.nextLine();
-            StackBracketTest test = new StackBracketTest(input);
+       
             // can you determine what this if statement is doing?  
             if (!input.equals("")) {
-                throw new IOException();
+                test.setExpression(input);
+                test.check();
             }
             // pass the string to the StackBracketTest object created
             // above using the most appropriate method.
             // Call the StackBracketTest check method.
             // Test result of check method and display result in form of
             // a message to the user e.g. “This statement is valid” 
-            test.check();
         } while (!input.equals(""));
     }
 }
