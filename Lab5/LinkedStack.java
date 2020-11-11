@@ -12,20 +12,23 @@ import java.util.EmptyStackException;
  * @author alsul
  */
 public class LinkedStack<T> {
-
-    private Node first;            // ref to first item on list
+    int length; // indicates length of the list
+    Node top;    // refernces top of stack
+    
     
 //--------------------------------------------------------------
 
     public LinkedStack() {         // constructor
-        first = null;
+       length=0;
+       top=null;
     }
 //--------------------------------------------------------------
 
     public void push(T j) {// put item on top of stack
-        Node newLink = new Node(j);                           // make new link
-        newLink.setNext(first);       // newLink --> old first
-        first = newLink;            // first --> newLink
+        Node temp = new Node(j);    // making a new node ans stroting the new value inisde it
+        temp.setNext(top);          // making the new nodes next the top node
+        top=temp;                   // moving node top to the top of the stack
+        length++;                   // increasing 
         
     }
 //--------------------------------------------------------------
@@ -35,30 +38,25 @@ public class LinkedStack<T> {
         if (isEmpty()) {// enter if stack is empty
             throw new EmptyStackException();// throw exepeption if stack is empty and someone wants to pop a item
         }
-        
-        Node current =first;
-        Node temp=first;
-        while(current.getNext()!= null){
-            current.setNext(current.getNext());
-        }
-        temp.setNext(current);
-        current.setNext(null);
-        return (T) temp.getData();
-        
+        T value = (T) top.getData();    // storing value of the top of stack 
+        top=top.getNext();              // changing pointer 
+        length--;                       // making the stack smaller
+       
+        return value;                   // returning value
     }
 //--------------------------------------------------------------
 
     public T peek() {         // peek at top of stack
-        Node current=first;
-        while(current.getNext()!=null){
-            current.setNext(current.getNext());
-        }
-        return (T) current.getData();
+        return (T) top.getData();// returning peek of top element 
     }
 //--------------------------------------------------------------
 
     public boolean isEmpty() {    // true if stack is empty
-       return (first==null);
+       return (length==0);
+    }
+    
+    public int getLength(){
+        return length;
     }
 //--------------------------------------------------------------
 
