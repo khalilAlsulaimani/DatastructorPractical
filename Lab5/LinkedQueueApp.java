@@ -22,7 +22,7 @@ public class LinkedQueueApp {
         qu.enqueue(70);
         System.out.println("is queue empty " + qu.isEmpty());
         System.out.println("queue size " + qu.size());
-        System.out.println("front of queue is " + qu.front());
+        System.out.println(qu.front() + " is front of queue");
 
         try {
             while (!qu.isEmpty()) {
