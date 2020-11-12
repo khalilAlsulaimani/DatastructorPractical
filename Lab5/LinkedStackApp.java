@@ -24,6 +24,10 @@ public class LinkedStackApp {
             stack.push(0);
             stack.push(7);
             
+            System.out.println("element top of stack is "+stack.peek());
+            System.out.println("is stack empty  "+stack.isEmpty());
+            System.out.println("size of stack is  "+stack.size());
+            
             while(!stack.isEmpty()){// dispalying and popping stack values 
                 int value = (int) stack.pop();
                 System.out.print(value+" ");

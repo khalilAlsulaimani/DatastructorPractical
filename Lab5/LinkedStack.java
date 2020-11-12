@@ -12,8 +12,8 @@ import java.util.EmptyStackException;
  * @author alsul
  */
 public class LinkedStack<T> {
-    int length; // indicates length of the list
-    Node top;    // refernces top of stack
+    private int length; // indicates length of the list
+    private Node top;    // refernces top of stack
     
     
 //--------------------------------------------------------------
@@ -55,7 +55,7 @@ public class LinkedStack<T> {
        return (length==0);
     }
     
-    public int getLength(){
+    public int size(){
         return length;
     }
 //--------------------------------------------------------------
