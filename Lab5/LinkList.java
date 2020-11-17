@@ -110,7 +110,7 @@ public class LinkList<T> {
         Node temp = null;
         while (current.getNext() != null) {
             prev = current;
-            current.setNext(current.getNext());
+            current=current.getNext();
         }// end while
         temp = current;
         prev.setNext(null);

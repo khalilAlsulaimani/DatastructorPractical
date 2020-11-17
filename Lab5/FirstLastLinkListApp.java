@@ -15,6 +15,10 @@ public class FirstLastLinkListApp {
         list.insert(0,1);
         list.insert(1,3);
         list.insert(2,100);
+        list.insert(3,9);
+        list.display();
+       
+        list.update(0,4);
         list.display();
        
         
