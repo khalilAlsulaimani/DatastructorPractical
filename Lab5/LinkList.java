@@ -12,7 +12,8 @@ package Lab5;
  */
 public class LinkList<T> {
 
-    private Node first;            // ref to first item on list
+    protected Node first;            // ref to first item on list
+    protected int length = 0;
 
     public Node getFirst() { // get value of first
 
@@ -22,6 +23,7 @@ public class LinkList<T> {
     public void setFirst(Node f) { // set first to new link
 
         first = f;
+        length++;
     }
 
     public LinkList() { // constructor
@@ -38,6 +40,7 @@ public class LinkList<T> {
         Node newLink = new Node(dd);                           // make new link
         newLink.setNext(first);       // newLink --> old first
         first = newLink;            // first --> newLink
+        length++;
     }
 
     public void insertLast(T dd) {// insert at start of list
@@ -46,12 +49,14 @@ public class LinkList<T> {
         while (current.getNext() != null) {
             current = current.getNext();
         }
+        length++;
     }// end insertLast
 
     public T deleteFirst() {      // delete first item (assumes list not empty)
         Node temp = first;          // save reference to link
         first = first.getNext();         // delete it: first-->old next
         temp.setNext(null);
+        length--;
         return (T) temp.getData();          // return deleted link
     }
 
@@ -61,17 +66,17 @@ public class LinkList<T> {
     }                               //    this list
 // -------------------------------------------------------------
 
-    public void displayList() {
+    public void display() {
         Node current = first;       // start at beginning of list
         while (current != null) {     // until end of list,
-            current.displayLink();   // print data
+            current.display();   // print data
             current = current.getNext();  // move to next link
         }
         System.out.println("");
     }
 // -------------------------------------------------------------
 
-    public Node find(int key) {
+    public Node find(T key) {
         Node current = first;
         while (current != null) {
             if (current.getData().equals(key)) {
@@ -82,19 +87,20 @@ public class LinkList<T> {
         return null;
     }
 
-    public Node delete(int key) {
+    public Node delete(T key) {
         Node prev = first;
         Node current = first;
         while (current != null) {
             if (current.getData().equals(key)) {
                 prev.setNext(current.getNext());
-                current.setNext( null);
+                current.setNext(null);
                 return current;
             }//if
             prev = current;
             current = current.getNext();
 
         }// while
+        length--;
         return null;
     }
 
@@ -108,8 +114,9 @@ public class LinkList<T> {
         }// end while
         temp = current;
         prev.setNext(null);
+        length--;
         return temp;
     }// end deleteLast
+
 // -------------------------------------------------------------
 }  // end class LinkList
-

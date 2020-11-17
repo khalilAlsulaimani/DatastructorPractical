@@ -10,36 +10,47 @@ package Lab5;
  * @author alsul
  * @param <T>
  */
-public class Node <T> {
+public class Node<T> {
 
-    private T iData;              // data item (key)
-    private Node next;              // next link in list
-// -------------------------------------------------------------
+    private T data;
+    private Node next;
+    private Node prev;
 
-    public Node(T id) { // constructor
-        iData = id;
+    public Node(T d) {
+        data = d;
     }
-// -------------------------------------------------------------
 
-    public void displayLink() {// display ourself
-        System.out.print("{" + iData + "} ");
+    @Override
+    public String toString() {
+        return "Node :" + data;
     }
     
-    public Node getNext(){
+    public void display() {// display ourself
+        System.out.print("{" + data + "} ");
+    }
+
+    public void setData(T d) {
+        data = d;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setNext(Node n) {
+        next = n;
+    }
+
+    public Node getNext() {
         return next;
     }
-    
-    public void setNext( Node next){
-        this.next=next;
-    }
-    
-    public T getData(){
-        return iData;
-    }
-    
-    public void setData(T data){
-        iData=data;
-    }
-}  // end class Node
 
+    public void setPrev(Node n) {
+        prev = n;
+    }
 
+    public Node getPrev() {
+        return prev;
+    } 
+
+} // end class Node

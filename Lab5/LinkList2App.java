@@ -18,8 +18,10 @@ public class LinkList2App {
         theList.insertFirst(44);
         theList.insertFirst(66);
         theList.insertFirst(88);
-
-        theList.displayList();              // display list
+        theList.display();              // display list
+        
+    
+        
 
         Node f = theList.find(88);          // find item
         if (f != null) {
@@ -34,16 +36,18 @@ public class LinkList2App {
         } else {
             System.out.println("Can't delete link");
         }
-
-        theList.displayList();              // display list
+        
+        
+        
+        theList.display();              // display list
         theList.deleteLast();
-        theList.displayList();
+        theList.display();
         theList.deleteFirst();
-        theList.displayList();
+        theList.display();
         theList.insertLast(33);
-        theList.displayList();
+        theList.display();
         theList.insertLast(80);
-        theList.displayList();
+        theList.display();
     }  // end main()
 }  // end class LinkList2App
 ////////////////////////////////////////////////////////////////
