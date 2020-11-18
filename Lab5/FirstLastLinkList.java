@@ -150,6 +150,27 @@ public class FirstLastLinkList extends LinkList {
     public Object retrieve(int index) throws IndexOutOfBoundsException {
         // provide implementation of retrieve which can utilise tail
         // if element is to be retrieved from end of list
+        int count=0;
+        
+        if (index > length || index < 0) {
+            throw new IndexOutOfBoundsException("invalid index");
+        }
+        
+        if(index==0){
+            
+            return first;
+        }else if(index== length-1){
+            return tail;
+        }
+        
+        Node current=first;
+        while(current!=null && count <= index){
+            current= current.getNext();
+            count++;
+        }
+        return current.getData();
+        
+        
     }
 
 }

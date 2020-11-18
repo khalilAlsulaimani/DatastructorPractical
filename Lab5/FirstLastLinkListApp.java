@@ -19,8 +19,10 @@ public class FirstLastLinkListApp {
         list.display();
        
         list.update(0,4);
+        list.update(3, 0);
         list.display();
-       
+       int value = (int)list.retrieve(1);
+       System.out.println("value is "+value );
         
         
     }
