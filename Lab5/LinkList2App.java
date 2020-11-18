@@ -19,9 +19,6 @@ public class LinkList2App {
         theList.insertFirst(66);
         theList.insertFirst(88);
         theList.display();              // display list
-        
-    
-        
 
         Node f = theList.find(88);          // find item
         if (f != null) {
@@ -36,9 +33,7 @@ public class LinkList2App {
         } else {
             System.out.println("Can't delete link");
         }
-        
-        
-        
+
         theList.display();              // display list
         theList.deleteLast();
         theList.display();
@@ -48,6 +43,15 @@ public class LinkList2App {
         theList.display();
         theList.insertLast(80);
         theList.display();
+
+        LinkList theList2 = new LinkList();
+
+        theList2.insertFirst("one");      // insert 4 items
+        theList2.insertFirst("string");
+        theList2.insertFirst("names");
+        theList2.insertFirst("hello ");
+        theList2.display();              // display list
+        
     }  // end main()
 }  // end class LinkList2App
 ////////////////////////////////////////////////////////////////

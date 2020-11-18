@@ -17,7 +17,7 @@ import java.lang.IndexOutOfBoundsException;
  *
  *
  */
-public class FirstLastLinkList extends LinkList {
+public class FirstLastLinkList <T> extends LinkList {
 
     protected Node tail;	// reference to tail node
 
@@ -81,25 +81,19 @@ public class FirstLastLinkList extends LinkList {
             throw new IndexOutOfBoundsException("invalid index");
         }
 
-        if (index == length - 1) {//if last element use the tail
-            Node prev= tail.getPrev();
-            tail=prev;
-            tail.setNext(null);
-            
-
-        } else if (index == 0) {// delete first element
+        if (index == 0) {// delete first element
             Node tempF = first;          // save reference to link
             first = first.getNext();         // delete it: first-->old next
             tempF.setNext(null);
 
         } else {
             Node prev = first;
-            
+
             while (current != null) {
-                if (count==index) {
+                if (count == index) {
                     prev.setNext(current.getNext());
                     current.setNext(null);
-                   
+
                 }
                 prev = current;
                 current = current.getNext();
@@ -109,35 +103,36 @@ public class FirstLastLinkList extends LinkList {
             length--; // decremnent length
         }
     }
-        /**
-         * update element at specified position in list with new element
-         *
-         * @param index position of element to update
-         * @param e new element
-         * @exception IndexOutOfBoundsException thrown if index out of bounds
-         */
-    public void update(int index, Object e) throws IndexOutOfBoundsException {
+
+    /**
+     * update element at specified position in list with new element
+     *
+     * @param index position of element to update
+     * @param e new element
+     * @exception IndexOutOfBoundsException thrown if index out of bounds
+     */
+    public void update(int index, T e) throws IndexOutOfBoundsException {
         // provide implementation of update which can utilise tail
         // if element to be updated is at end of list
-        
-        int count=0;
+
+        int count = 0;
         if (index > length || index < 0) {
             throw new IndexOutOfBoundsException("invalid index");
         }
-        
-        if(index==length-1){
+
+        if (index == length - 1) {
             tail.setData(e);
-        }else if(index ==0){
+        } else if (index == 0) {
             first.setData(e);
-        }else{
-            Node current=first;
-            while(current!=null && count<=index){
-                current=current.getNext();
+        } else {
+            Node current = first;
+            while (current != null && count <= index) {
+                current = current.getNext();
                 count++;
             }
             current.setData(e);
         }
-        
+
     }
 
     /**
@@ -150,27 +145,26 @@ public class FirstLastLinkList extends LinkList {
     public Object retrieve(int index) throws IndexOutOfBoundsException {
         // provide implementation of retrieve which can utilise tail
         // if element is to be retrieved from end of list
-        int count=0;
-        
+        int count = 0;
+
         if (index > length || index < 0) {
             throw new IndexOutOfBoundsException("invalid index");
         }
-        
-        if(index==0){
-            
+
+        if (index == 0) {
+
             return first;
-        }else if(index== length-1){
+        } else if (index == length - 1) {
             return tail;
         }
-        
-        Node current=first;
-        while(current!=null && count <= index){
-            current= current.getNext();
+
+        Node current = first;
+        while (current != null && count <= index) {
+            current = current.getNext();
             count++;
         }
         return current.getData();
-        
-        
+
     }
 
 }

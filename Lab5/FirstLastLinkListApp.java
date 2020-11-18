@@ -18,13 +18,18 @@ public class FirstLastLinkListApp {
         list.insert(3,9);
         list.display();
        
-        list.update(0,4);
-        list.update(3, 0);
+        //list.update(0,4);
+        //list.update(3, 0);
+        list.remove(3);
         list.display();
        int value = (int)list.retrieve(1);
        System.out.println("value is "+value );
-        
-        
+       
+       FirstLastLinkList list2 = new FirstLastLinkList();
+       
+       list2.insert(0,"khalil");
+       list2.insert(1,"maike");
+       list2.display();
     }
     
 }

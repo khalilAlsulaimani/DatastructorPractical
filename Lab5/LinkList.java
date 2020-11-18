@@ -117,6 +117,59 @@ public class LinkList<T> {
         length--;
         return temp;
     }// end deleteLast
+    
+    public int length(){
+        return length;
+    }
+    
+    
+    public Object retrieve(int index) throws IndexOutOfBoundsException {
+        // provide implementation of retrieve which can utilise tail
+        // if element is to be retrieved from end of list
+        int count = 0;
+
+        if (index > length || index < 0) {
+            throw new IndexOutOfBoundsException("invalid index");
+        }
+
+        if (index == 0) {
+
+            return first;
+        } 
+        
+        Node current = first;
+        while (current != null && count <= index) {
+            current = current.getNext();
+            count++;
+        }
+        return current.getData();
+
+    }
 
 // -------------------------------------------------------------
+
+    public void insert(int index, Object e) throws IndexOutOfBoundsException {
+        // provide implementation of insert which can utilise tail
+        // if element is to be inserted at end of listpp
+
+        Node current = first;// teno node to get to the needed node 
+
+        Node temp = new Node(e);// new node temp with our new object parameter  
+
+        if (index > length || index < 0) {// if index out of bounds enter
+            throw new IndexOutOfBoundsException("invalid index ");
+        }
+
+        if (index == 0 && length == 0) {// if first element set tail and first with e 
+            temp.setNext(first);// point to first 
+            first = temp;// set first tp temp
+            
+
+        } else {
+            
+        }
+
+        length++;// incremnet length
+
+    }
 }  // end class LinkList
