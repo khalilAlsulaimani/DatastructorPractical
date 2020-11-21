@@ -110,20 +110,19 @@ public class LinkList<T> {
         Node temp = null;
         while (current.getNext() != null) {
             prev = current;
-            current=current.getNext();
+            current = current.getNext();
         }// end while
         temp = current;
         prev.setNext(null);
         length--;
         return temp;
     }// end deleteLast
-    
-    public int length(){
+
+    public int length() {
         return length;
     }
-    
-    
-    public Object retrieve(int index) throws IndexOutOfBoundsException {
+
+    public T retrieve(int index) throws IndexOutOfBoundsException {
         // provide implementation of retrieve which can utilise tail
         // if element is to be retrieved from end of list
         int count = 0;
@@ -134,26 +133,26 @@ public class LinkList<T> {
 
         if (index == 0) {
 
-            return first;
-        } 
-        
-        Node current = first;
-        while (current != null && count <= index) {
-            current = current.getNext();
-            count++;
+            return (T) first.getData();
+        } else {
+
+            Node current = first;
+            while (current.getNext() != null && count <= index) {
+                current = current.getNext();
+                count++;
+            }
+            return (T) current.getData();
         }
-        return current.getData();
 
     }
 
 // -------------------------------------------------------------
-
-    public void insert(int index, Object e) throws IndexOutOfBoundsException {
+    public void insert(int index, T e) throws IndexOutOfBoundsException {
         // provide implementation of insert which can utilise tail
         // if element is to be inserted at end of listpp
 
         Node current = first;// teno node to get to the needed node 
-
+        int count = 0;
         Node temp = new Node(e);// new node temp with our new object parameter  
 
         if (index > length || index < 0) {// if index out of bounds enter
@@ -163,13 +162,33 @@ public class LinkList<T> {
         if (index == 0 && length == 0) {// if first element set tail and first with e 
             temp.setNext(first);// point to first 
             first = temp;// set first tp temp
-            
 
         } else {
-            
+            Node temps = new Node(e);
+            while (current.getNext() != null && count < index) {
+                current = current.getNext();
+                count++;
+            }
+            current.setNext(temps);
+            current = temps;
+
         }
 
         length++;// incremnet length
+
+    }
+
+    int indexOf(T retrieve) {
+        Node current = first;
+        int count = 0;
+        while (current != null) {
+            if (current.getData().equals(retrieve)) {
+                return count;
+            }//if
+            current = current.getNext();
+            count++;
+        }// while
+        return -1;
 
     }
 }  // end class LinkList

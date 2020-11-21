@@ -16,11 +16,12 @@ public class FirstLastLinkListApp {
         list.insert(1,3);
         list.insert(2,100);
         list.insert(3,9);
+        list.insert(4,8);
         list.display();
        
-        //list.update(0,4);
-        //list.update(3, 0);
-        list.remove(3);
+        list.update(0,4);
+        list.update(3, 0);
+        list.remove(4);
         list.display();
        int value = (int)list.retrieve(1);
        System.out.println("value is "+value );

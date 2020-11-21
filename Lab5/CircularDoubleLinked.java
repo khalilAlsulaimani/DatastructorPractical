@@ -6,28 +6,20 @@
 package Lab5;
 
 /**
- * @(#) FirstLastLinkedList.java
- */
-import java.lang.IndexOutOfBoundsException;
-
-/**
- * Implements a Double Ended List ADT Using a Dynamic LinkedList Implementation.
- * Being double ended means inserting, updating and retrieving elements at end
- * of list can be implemented more efficiently.
  *
- *
+ * @author alsul
+ * @param <T>
  */
-public class FirstLastLinkList <T> extends LinkList {
+public class CircularDoubleLinked<T> {
+    
+    Node first;
+    Node tail;
+    int length;
 
-    protected Node tail;	// reference to tail node
-
-    /**
-     * Constructor to create new empty List
-     *
-     */
-    public FirstLastLinkList() {
-        // call superclass constructor and initialise tail.
+    public CircularDoubleLinked() {
+        first = null;
         tail = null;
+        length = 0;
     }
 
     /**
@@ -37,7 +29,7 @@ public class FirstLastLinkList <T> extends LinkList {
      * @param e element to insert
      * @exception IndexOutOfBoundsException if index out of bounds
      */
-    public void insert(int index, Object e) throws IndexOutOfBoundsException {
+    public void insert(int index, T e) throws IndexOutOfBoundsException {
         // provide implementation of insert which can utilise tail
         // if element is to be inserted at end of listpp
 
@@ -50,13 +42,23 @@ public class FirstLastLinkList <T> extends LinkList {
         }
 
         if (index == 0 && length == 0) {// if first element set tail and first with e 
-            temp.setNext(first);// point to first 
-            first = temp;// set first tp temp
-            tail = temp;// set tail to temp
+            temp.setNext(first);        // point to first 
 
-        } else if (index == length) {// if it is the last place set only tail
-            tail.setNext(temp);// set tail to point to temp
-            tail = temp;// change tail to temp
+            first = temp;               // set first tp temp
+
+            first.setPrev(tail);        // first perv is tail
+
+            tail = temp;                // set tail to temp
+
+            tail.setNext(first);        // tail points to first
+
+        } else if (index == length) {   // if it is the last place set only tail
+
+            tail.setNext(temp);         // set tail to point to temp
+
+            tail = temp;                // change tail to temp
+
+            tail.setNext(first);
         }
 
         length++;// incremnet length
@@ -84,17 +86,22 @@ public class FirstLastLinkList <T> extends LinkList {
         if (index == 0) {// delete first element
             Node tempF = first;          // save reference to link
             first = first.getNext();         // delete it: first-->old next
+            first.setPrev(tail);
             tempF.setNext(null);
 
         } else {
             Node prev = first;
 
             while (current != null) {
-                if (count == index) {
+                if (count == index && index == length - 1) {// if it is the tail being deleted
                     prev.setNext(current.getNext());
-                    current.setNext(null);
+                    current.setNext(first);
 
+                } else if (count == index) {// if middle element is being deleted 
+                    prev.setNext(current.getNext()); 
+                    current.setNext(null);
                 }
+
                 prev = current;
                 current = current.getNext();
                 count++;
@@ -142,7 +149,6 @@ public class FirstLastLinkList <T> extends LinkList {
      * @return element at postion specified by index
      * @exception IndexOutOfBoundsException thrown if index out of bounds
      */
-    @Override
     public T retrieve(int index) throws IndexOutOfBoundsException {
         // provide implementation of retrieve which can utilise tail
         // if element is to be retrieved from end of list
@@ -154,9 +160,9 @@ public class FirstLastLinkList <T> extends LinkList {
 
         if (index == 0) {
 
-            return (T)first;
+            return (T) first.getData();
         } else if (index == length - 1) {
-            return (T) tail;
+            return (T) tail.getData();
         }
 
         Node current = first;

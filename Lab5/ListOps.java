@@ -29,6 +29,7 @@ public class ListOps {
 
         // So firstly declare output list
         LinkList u = new LinkList();
+        ListIterator  itr = new ListIterator (u);
 
         // Then iterate through list elements.	
         for (int i = 0; i < a.length(); i++) {
@@ -37,8 +38,8 @@ public class ListOps {
             // indexOf(Object) method which tests if object is in list b
             if (b.indexOf(a.retrieve(i)) != -1) {
                 // insert object into output list u at position 0
-                Object t=a.retrieve(i);
-                u.insert(0,t);
+                Object t = a.retrieve(i);
+                u.insert(0, t);
             }
         }
         return u;
@@ -54,6 +55,21 @@ public class ListOps {
      */
     public static LinkList union(LinkList a, LinkList b) {
         // union is set of elements in a and b but not duplicated
+        LinkList temp = new LinkList();// store union values in 
+
+        for (int i = 0; i < a.length(); i++) {
+            if (b.indexOf(a.retrieve(i)) != -1) {
+                // insert object into output list u at position 0
+                Object t = a.retrieve(i);
+                temp.insert(0, t);
+//            }else{
+//                Object t3=b.retrieve(i);
+//               temp.insert(0, t3);
+            }
+            
+        }
+
+        return temp;
     }
 
     /**
@@ -66,7 +82,20 @@ public class ListOps {
      */
     public static LinkList difference(LinkList a, LinkList b) {
         // set of elements not common to a and b
-    }
-}
 
+        LinkList temp = new LinkList();
+
+        // Then iterate through list elements.	
+        for (int i = 0; i < a.length(); i++) {
+
+            if (b.indexOf(a.retrieve(i)) == -1) {
+                // insert object into output list u at position 0
+                Object t = a.retrieve(i);
+                Object t1 = b.retrieve(i);
+                temp.insert(0, t);
+                temp.insert(0, t1);
+            }
+        }
+        return temp;
+    }
 }
