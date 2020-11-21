@@ -5,8 +5,6 @@
  */
 package Lab5;
 
-import java.io.*;
-
 /**
  * LinkList Processing Class. These methods are declared as static. They are
  * general purpose List processing methods which are not list instance specific.
@@ -29,18 +27,25 @@ public class ListOps {
 
         // So firstly declare output list
         LinkList u = new LinkList();
-        ListIterator  itr = new ListIterator (u);
+        ListIterator itra = new ListIterator(a);
 
-        // Then iterate through list elements.	
+       
+        // Then iterate through list elements.
+        Node av = itra.getCurrent();
+
         for (int i = 0; i < a.length(); i++) {
             // retrieve element at position i in list a using retrieve(i)
             // method and check if it can be located in list b using
             // indexOf(Object) method which tests if object is in list b
-            if (b.indexOf(a.retrieve(i)) != -1) {
+            if (b.indexOf(av.getData()) != -1) {
                 // insert object into output list u at position 0
-                Object t = a.retrieve(i);
-                u.insert(0, t);
+                //Object t = a.retrieve(i);
+                u.insertFirst(av.getData());
+                
             }
+
+            av = av.getNext();
+
         }
         return u;
     }
@@ -57,16 +62,30 @@ public class ListOps {
         // union is set of elements in a and b but not duplicated
         LinkList temp = new LinkList();// store union values in 
 
+        ListIterator itra = new ListIterator(a);// iterator for list a
+        ListIterator itrb = new ListIterator(b);// itrator for list b
+
+       
+        
+        Node av = itra.getCurrent();// save first node of a in av
+        Node bv = itrb.getCurrent();// save first node of b in bv
+
         for (int i = 0; i < a.length(); i++) {
-            if (b.indexOf(a.retrieve(i)) != -1) {
+           
+
+            if (b.indexOf(av.getData()) != -1) {// if elements are the same in both lists enter and save one 
                 // insert object into output list u at position 0
-                Object t = a.retrieve(i);
-                temp.insert(0, t);
-//            }else{
-//                Object t3=b.retrieve(i);
-//               temp.insert(0, t3);
+                temp.insertFirst(av.getData());
+
+            } else {// if diffrent save both
+                temp.insertFirst(av.getData());
+
+                temp.insertFirst(bv.getData());
+
             }
-            
+            av =av.getNext();// go to next node of a 
+            bv= bv.getNext(); // go to next node of b
+
         }
 
         return temp;
@@ -84,17 +103,26 @@ public class ListOps {
         // set of elements not common to a and b
 
         LinkList temp = new LinkList();
-
+     
+        ListIterator itra = new ListIterator(a);
+        ListIterator itrb = new ListIterator(b);
+        
+        
+        Node av=itra.getCurrent();
+        Node bv=itrb.getCurrent();
         // Then iterate through list elements.	
         for (int i = 0; i < a.length(); i++) {
 
-            if (b.indexOf(a.retrieve(i)) == -1) {
+            if (b.indexOf(av.getData()) == -1) {
                 // insert object into output list u at position 0
-                Object t = a.retrieve(i);
-                Object t1 = b.retrieve(i);
-                temp.insert(0, t);
-                temp.insert(0, t1);
+                temp.insertFirst(av.getData());
+
+                temp.insertFirst(bv.getData());
+              
             }
+            
+            av=av.getNext();
+            bv=bv.getNext();
         }
         return temp;
     }
