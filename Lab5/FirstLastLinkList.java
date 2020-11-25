@@ -37,6 +37,7 @@ public class FirstLastLinkList <T> extends LinkList {
      * @param e element to insert
      * @exception IndexOutOfBoundsException if index out of bounds
      */
+    @Override
     public void insert(int index, Object e) throws IndexOutOfBoundsException {
         // provide implementation of insert which can utilise tail
         // if element is to be inserted at end of listpp
