@@ -56,8 +56,8 @@ public class CircularDoubleLinked<T> {
 
             tail.setNext(temp);         // set tail to point to temp
 
-            tail = temp;                // change tail to temp
-
+            tail = temp; // change tail to temp
+            
             tail.setNext(first);
         }
 
